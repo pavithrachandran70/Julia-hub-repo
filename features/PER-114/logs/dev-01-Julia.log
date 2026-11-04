@@ -157,3 +157,24 @@ The `Real` fallback stays, so numeric `sincospi` is unchanged. `sinpi`, `cospi`,
 `./usr/bin/julia --startup-file=no test/runtests.jl math` passed (2,708,576 tests). `contrib/check-whitespace.jl` reported no issues.
 
 Files changed: `base/math.jl` (already on the branch) and `test/math.jl`.The math test suite finished successfully: 2,708,576 tests passed in about 72 seconds, with exit code 0.
+`sincospi(missing)` still returns `(missing, missing)`, and that method is generated inside the shared loop again.
+
+In `base/math.jl`, `:sincospi` is back in the `Real`/`Missing` loop. The `Missing` method branches only for that function:
+
+```1322:1332:base/math.jl
+for f in (:sin, :cos, :tan, :asin, :atan, :acos,
+          :sinh, :cosh, :tanh, :asinh, :acosh, :atanh,
+          :exp, :exp2, :exp10, :expm1, :log, :log2, :log10, :log1p,
+          :exponent, :sqrt, :cbrt, :sinpi, :cospi, :sincospi, :tanpi)
+    @eval function ($f)(x::Real)
+        xf = float(x)
+        xf isa typeof(x) && throw(MethodError($f, (x,)))
+        return ($f)(xf)
+    end
+    @eval $(f)(::Missing) = $(f === :sincospi ? :(missing, missing) : (:missing))
+end
+```
+
+The separate `sincospi(::Real)` fallback and `sincospi(::Missing) = (missing, missing)` are gone. `sinpi`, `cospi`, and `tanpi` still return a single `missing`. The regression tests already in `test/math.jl` were left as they are.
+
+`./usr/bin/julia --startup-file=no test/runtests.jl math` passed: 2708725 tests, exit code 0. `contrib/check-whitespace.jl` reported no issues. That suite runs the existing system image, so it does not load this edit. Evaluating the new loop in `Base.Math` confirmed `sincospi(missing) === (missing, missing)` and that the other functions still return `missing`.The math test suite finished successfully: 2,708,725 tests passed in about 83 seconds, with exit code 0.

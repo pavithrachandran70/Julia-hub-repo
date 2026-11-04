@@ -1,15 +1,15 @@
 ---
 schema_version: 1
 key: PER-114
-status: pr_reviewed
-current_node: pr_review
+status: in_development
+current_node: dev
 track: quick
 involved_repos:
 - Julia
 depends_on: []
 owner: pavc
 lease_until: '2026-11-06T10:26:33.799822+00:00'
-revision: 184
+revision: 364
 hub_sha: null
 ticket_hash: a4e6eb297ce46101
 jira_hash: a4e6eb297ce46101
@@ -22,14 +22,14 @@ stories:
 child_ticket_keys: []
 critic_iterations: 0
 dev_retries: 0
-pr_revision_rounds: 1
+pr_revision_rounds: 3
 gate_rounds: {}
 pr_ids:
   hub_plan: '1'
   hub_arch: '2'
   hub: '2'
   Julia: '1'
-waiting_for: feature_pr_human
+waiting_for: null
 tokens_in: 39681
 tokens_out: 3443
 cost_anthropic_usd: 0.170344
@@ -188,6 +188,35 @@ history:
 - node: pr_review
   note: awaiting feature_pr_human
   at: '2026-11-04T10:58:35.710984+00:00'
+- node: catch_up
+  note: manual commit 5207678a85897db393e30bb67f10606fae900898
+  at: '2026-11-04T11:10:19.033302+00:00'
+- node: catch_up
+  note: manual commit 7a5e043f8eb6a6e1856957f77200be79c3e5db60
+  at: '2026-11-04T11:15:55.068194+00:00'
+- node: pr_review
+  note: pr_revision exhausted
+  at: '2026-11-04T15:24:40.909313+00:00'
+- node: pr_review
+  note: fix:Julia:not_an_issue:None:Only add tests for code you changed -- do not
+    duplicate existing tests
+  at: '2026-11-04T15:27:08.641417+00:00'
+- node: pr_review
+  note: 'fix:Julia:issue:minor:Instead of writing a comment "this is the same", let''s
+    continue to use the same '
+  at: '2026-11-04T15:27:12.135960+00:00'
+- node: pr_review
+  note: auto-fix tier=minor round=3
+  at: '2026-11-04T15:27:13.973937+00:00'
+- node: pr_review
+  note: "route minor \u2192 loop pr_fix_minor: dev \u2192 pre_pr_qa \u2192 pr_review"
+  at: '2026-11-04T15:27:14.777961+00:00'
+- node: dev
+  note: starting
+  at: '2026-11-04T15:27:14.778046+00:00'
+- node: dev
+  note: done 01-Julia
+  at: '2026-11-04T15:33:38.521623+00:00'
 ---
 
 # Feature state

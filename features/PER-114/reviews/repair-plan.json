@@ -1,7 +1,6 @@
 {
   "comment_ids": [
-    "4466367915",
-    "4466371236"
+    "4469481700"
   ],
   "tier": "minor",
   "stories": [
@@ -9,15 +8,9 @@
   ],
   "items": [
     {
-      "comment_id": "4466367915",
+      "comment_id": "4469481700",
       "repo": "Julia",
-      "path": "test/math.jl",
-      "tier": "minor"
-    },
-    {
-      "comment_id": "4466371236",
-      "repo": "Julia",
-      "path": ".gitignore",
+      "path": "base/math.jl",
       "tier": "minor"
     }
   ]

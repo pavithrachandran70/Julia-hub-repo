@@ -357,3 +357,37 @@ Test Summary: |    Pass    Total   Time
 
 (exit 0)
 
+===== 2026-11-04T15:33:38+00:00 attempt 1: PASS =====
+$ ./usr/bin/julia --startup-file=no contrib/check-whitespace.jl
+
+Whitespace check found no issues.
+
+(exit 0)
+$ ./usr/bin/julia --startup-file=no test/runtests.jl math
+Running parallel tests with:
+  gethostname() = PG055QS4
+  BUILDKITE_AGENT_NAME = (not set)
+  getpid() = 626459
+  nworkers() = 1
+  nthreads(:interactive) = 1
+  nthreads(:default) = 1
+  Sys.CPU_THREADS = 12
+  Sys.total_memory() = 15.112 GiB
+  Sys.free_memory() = 3.019 GiB
+  diskstat().total = 465.363 GiB
+  diskstat().available = 218.504 GiB
+  diskstat(tempdir()).total = 465.363 GiB
+  diskstat(tempdir()).available = 218.504 GiB
+  Sys.uptime() = 216932.61 (60.3 hours)
+
+[37mTest[39m[37m  (Worker) | [39m[37mTime (s) | GC (s) | GC % | Alloc (MB) | RSS (MB)[39m
+[37mmath       (1) |        [39m[90mstarted at 2026-11-04T21:02:19.441[39m
+[37mmath[39m[37m       (1) | [39m[37m   78.33 | [39m[37m  1.72 | [39m[37m 2.2 | [39m[37m   8948.47 | [39m[37m 1149.35[39m
+
+[0m[1mTest Summary: | [22m[32m[1m   Pass  [22m[39m[36m[1m  Total  [22m[39m[0m[1m   Time[22m
+  Overall     | [32m2708273  [39m[36m2708273  [39m[0m1m20.6s
+[32m[1m    SUCCESS[22m[39m
+
+
+(exit 0)
+
