@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 key: PER-114
-status: escalated
+status: in_development
 current_node: dev
 track: quick
 involved_repos:
@@ -9,7 +9,7 @@ involved_repos:
 depends_on: []
 owner: pavc
 lease_until: '2026-11-06T07:14:29.542341+00:00'
-revision: 25
+revision: 32
 hub_sha: null
 ticket_hash: a4e6eb297ce46101
 jira_hash: a4e6eb297ce46101
@@ -28,7 +28,7 @@ pr_ids:
   hub_plan: '1'
   hub_arch: '2'
   hub: '2'
-waiting_for: dev_failure
+waiting_for: dirty_worktree
 tokens_in: 25533
 tokens_out: 3422
 cost_anthropic_usd: 0.127585
@@ -73,6 +73,15 @@ history:
 - node: dev
   note: 'failed 01-Julia: lint failed'
   at: '2026-11-04T07:29:33.744029+00:00'
+- node: catch_up
+  note: manual commit 84ec72f4133a6e61005dd5ae9a10241ac9dfd66a
+  at: '2026-11-04T07:38:30.539510+00:00'
+- node: dev
+  note: starting
+  at: '2026-11-04T07:38:31.509500+00:00'
+- node: dev
+  note: dirty worktree stashed
+  at: '2026-11-04T07:38:31.666845+00:00'
 ---
 
 # Feature state
