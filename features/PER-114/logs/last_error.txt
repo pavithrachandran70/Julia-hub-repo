@@ -1,22 +1,50 @@
-lint failed
+test failed
 $ julia --startup-file=no contrib/check-whitespace.jl
 
-/bin/sh: 1: julia: not found
+Whitespace check found no issues.
 
-(exit 127)
+(exit 0)
+$ julia --startup-file=no test/runtests.jl math
+
+ERROR: LoadError: UndefVarError: `worker_output_hook` not defined in `Distributed`
+Suggestion: check for spelling errors or missing imports.
+Stacktrace:
+ [1] getproperty(x::Module, f::Symbol)
+   @ Base ./Base_compiler.jl:50
+ [2] top-level scope
+   @ ~/.adlc/worktrees/Julia/PER-114/Julia/test/runtests.jl:59
+ [3] include(mod::Module, _path::String)
+   @ Base ./Base.jl:309
+ [4] exec_options(opts::Base.JLOptions)
+   @ Base ./client.jl:344
+ [5] _start()
+   @ Base ./client.jl:577
+in expression starting at /home/pavc/.adlc/worktrees/Julia/PER-114/Julia/test/runtests.jl:59
+
+(exit 1)
 
 `sincospi(missing)` now returns `(missing, missing)`, matching `sincos` and `sincosd`.
 
-`:sincospi` was removed from the shared `Missing` generator in `base/math.jl`. That generator returned a single `missing`, so `s, c = sincospi(missing)` raised `MethodError`. The generic `Real` fallback stays as its own method, and `sincospi(::Missing)` returns the tuple. `sinpi`, `cospi`, and `tanpi` still return a single `missing`.
+`base/math.jl` no longer gives `sincospi` the shared `Missing` method that returned a single `missing`. The generic real fallback stays, and a dedicated method returns the pair:
 
-`test/math.jl` checks the tuple and that destructuring binds both values to `missing`.
+```1333:1340:base/math.jl
+# Same Real fallback the shared loop emits; sincospi is omitted there so
+# missing returns a (sine, cosine) tuple, matching sincos and sincosd.
+function sincospi(x::Real)
+    xf = float(x)
+    xf isa typeof(x) && throw(MethodError(sincospi, (x,)))
+    return sincospi(xf)
+end
+sincospi(::Missing) = (missing, missing)
+```
 
-**Files changed**
-- `base/math.jl`
-- `test/math.jl`
-- `.gitignore` was already modified before this work and was left as-is
+`test/math.jl` checks that the tuple is `(missing, missing)` and that `s, c = sincospi(missing)` binds both names.
+
+`sinpi`, `cospi`, and `tanpi` still return a single `missing`. Numeric `sincospi` behavior is unchanged.
 
 **Checks**
 - `julia --startup-file=no contrib/check-whitespace.jl` passed.
-- Defining `sincospi(::Missing) = (missing, missing)` in `Base.Math` satisfies the tuple, destructuring, related trig, and numeric checks (`0.5`, `1.0`, `5//6`).
-- `julia --startup-file=no test/runtests.jl math` exited 1 in about 5 seconds. `test/runtests.jl` uses `Distributed.worker_output_hook`, which Julia 1.13.3 does not define, so the math tests never started. There is no built `usr/bin/julia` in this tree, and the system image still has the old method until Julia is rebuilt.The math test command exited with code 1 before any math tests ran. `test/runtests.jl` references `Distributed.worker_output_hook`, which is not defined in the installed Julia 1.13.3, so the suite never reached `sincospi`.
+- The same `sincospi(::Missing)` method, evaluated in Julia 1.13.3, passed the story checks for `missing` and for `0.5`, `1.0`, and `2.5`.
+- `julia --startup-file=no test/runtests.jl math` exited immediately with `UndefVarError: worker_output_hook not defined in Distributed` at `test/runtests.jl:59`. This tree has no built `usr/bin/julia`, and the installed 1.13.3 runner does not provide that hook. The math tests did not start.
+
+**Files changed:** `base/math.jl`, `test/math.jl`. `.gitignore` was already modified and was left as it was.

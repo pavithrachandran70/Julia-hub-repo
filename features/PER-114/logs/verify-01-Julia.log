@@ -19,3 +19,78 @@ $ julia --startup-file=no contrib/check-whitespace.jl
 
 (exit 127)
 
+===== 2026-11-04T07:47:38+00:00 attempt 1: FAIL =====
+$ julia --startup-file=no contrib/check-whitespace.jl
+
+Whitespace check found no issues.
+
+(exit 0)
+$ julia --startup-file=no test/runtests.jl math
+
+ERROR: LoadError: UndefVarError: `worker_output_hook` not defined in `Distributed`
+Suggestion: check for spelling errors or missing imports.
+Stacktrace:
+ [1] getproperty(x::Module, f::Symbol)
+   @ Base ./Base_compiler.jl:50
+ [2] top-level scope
+   @ ~/.adlc/worktrees/Julia/PER-114/Julia/test/runtests.jl:59
+ [3] include(mod::Module, _path::String)
+   @ Base ./Base.jl:309
+ [4] exec_options(opts::Base.JLOptions)
+   @ Base ./client.jl:344
+ [5] _start()
+   @ Base ./client.jl:577
+in expression starting at /home/pavc/.adlc/worktrees/Julia/PER-114/Julia/test/runtests.jl:59
+
+(exit 1)
+
+===== 2026-11-04T07:55:51+00:00 attempt 2: FAIL =====
+$ julia --startup-file=no contrib/check-whitespace.jl
+
+Whitespace check found no issues.
+
+(exit 0)
+$ julia --startup-file=no test/runtests.jl math
+
+ERROR: LoadError: UndefVarError: `worker_output_hook` not defined in `Distributed`
+Suggestion: check for spelling errors or missing imports.
+Stacktrace:
+ [1] getproperty(x::Module, f::Symbol)
+   @ Base ./Base_compiler.jl:50
+ [2] top-level scope
+   @ ~/.adlc/worktrees/Julia/PER-114/Julia/test/runtests.jl:59
+ [3] include(mod::Module, _path::String)
+   @ Base ./Base.jl:309
+ [4] exec_options(opts::Base.JLOptions)
+   @ Base ./client.jl:344
+ [5] _start()
+   @ Base ./client.jl:577
+in expression starting at /home/pavc/.adlc/worktrees/Julia/PER-114/Julia/test/runtests.jl:59
+
+(exit 1)
+
+===== 2026-11-04T08:01:35+00:00 attempt 3: FAIL =====
+$ julia --startup-file=no contrib/check-whitespace.jl
+
+Whitespace check found no issues.
+
+(exit 0)
+$ julia --startup-file=no test/runtests.jl math
+
+ERROR: LoadError: UndefVarError: `worker_output_hook` not defined in `Distributed`
+Suggestion: check for spelling errors or missing imports.
+Stacktrace:
+ [1] getproperty(x::Module, f::Symbol)
+   @ Base ./Base_compiler.jl:50
+ [2] top-level scope
+   @ ~/.adlc/worktrees/Julia/PER-114/Julia/test/runtests.jl:59
+ [3] include(mod::Module, _path::String)
+   @ Base ./Base.jl:309
+ [4] exec_options(opts::Base.JLOptions)
+   @ Base ./client.jl:344
+ [5] _start()
+   @ Base ./client.jl:577
+in expression starting at /home/pavc/.adlc/worktrees/Julia/PER-114/Julia/test/runtests.jl:59
+
+(exit 1)
+
