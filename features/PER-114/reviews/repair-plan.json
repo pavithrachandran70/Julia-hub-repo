@@ -1,6 +1,6 @@
 {
   "comment_ids": [
-    "4469481700"
+    "4470004872"
   ],
   "tier": "minor",
   "stories": [
@@ -8,9 +8,9 @@
   ],
   "items": [
     {
-      "comment_id": "4469481700",
+      "comment_id": "4470004872",
       "repo": "Julia",
-      "path": "base/math.jl",
+      "path": "test/math.jl",
       "tier": "minor"
     }
   ]

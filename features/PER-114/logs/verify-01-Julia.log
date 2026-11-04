@@ -391,3 +391,37 @@ Running parallel tests with:
 
 (exit 0)
 
+===== 2026-11-04T16:13:14+00:00 attempt 1: PASS =====
+$ ./usr/bin/julia --startup-file=no contrib/check-whitespace.jl
+
+Whitespace check found no issues.
+
+(exit 0)
+$ ./usr/bin/julia --startup-file=no test/runtests.jl math
+Running parallel tests with:
+  gethostname() = PG055QS4
+  BUILDKITE_AGENT_NAME = (not set)
+  getpid() = 813469
+  nworkers() = 1
+  nthreads(:interactive) = 1
+  nthreads(:default) = 1
+  Sys.CPU_THREADS = 12
+  Sys.total_memory() = 15.112 GiB
+  Sys.free_memory() = 3.069 GiB
+  diskstat().total = 465.363 GiB
+  diskstat().available = 218.478 GiB
+  diskstat(tempdir()).total = 465.363 GiB
+  diskstat(tempdir()).available = 218.478 GiB
+  Sys.uptime() = 219318.53 (60.9 hours)
+
+Test  (Worker) | Time (s) | GC (s) | GC % | Alloc (MB) | RSS (MB)
+math       (1) |        started at 2026-11-04T21:42:04.837
+math       (1) |    68.86 |   1.78 |  2.6 |    8948.44 |  1129.52
+
+Test Summary: |    Pass    Total     Time
+  Overall     | 2708620  2708620  1m10.7s
+    SUCCESS
+
+
+(exit 0)
+
