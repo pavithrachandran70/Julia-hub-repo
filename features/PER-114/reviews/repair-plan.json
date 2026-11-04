@@ -1,17 +1,17 @@
 {
   "comment_ids": [
-    "4470004872"
+    "4470564575"
   ],
-  "tier": "minor",
+  "tier": "moderate",
   "stories": [
     "01-Julia"
   ],
   "items": [
     {
-      "comment_id": "4470004872",
+      "comment_id": "4470564575",
       "repo": "Julia",
-      "path": "test/math.jl",
-      "tier": "minor"
+      "path": "base/math.jl",
+      "tier": "moderate"
     }
   ]
 }

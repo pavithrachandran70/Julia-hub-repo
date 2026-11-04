@@ -115,14 +115,12 @@ s, c = sincospi(1.0)
    end
    ```
 
-2. **Remove `:sincospi` from the shared generator list** so it no longer receives the single-value `missing` method.
-
-3. **Define a dedicated method** for `sincospi(::Missing)` immediately after the loop that returns the expected tuple:
+2. **Keep `:sincospi` in the shared generator list** (positioned next to `:cospi` and `:tanpi`) and modify the `Missing` method line to branch on the function name:
    ```julia
-   sincospi(::Missing) = (missing, missing)
+   @eval $(f)(::Missing) = $(f === :sincospi ? :(missing, missing) : (:missing))
    ```
 
-4. **Add a regression test** in `test/math.jl` within the existing `Missing` behavior test section:
+3. **Add a regression test** in `test/math.jl` within the existing `Missing` behavior test section:
    ```julia
    @testset "sincospi(missing) returns tuple" begin
        @test sincospi(missing) === (missing, missing)
@@ -136,7 +134,7 @@ s, c = sincospi(1.0)
 
 | File | Change |
 |------|--------|
-| `base/math.jl` | Remove `:sincospi` from the shared `Missing` method generator list (around line 1325); add dedicated method `sincospi(::Missing) = (missing, missing)` immediately after the loop |
+| `base/math.jl` | Modify the shared `Missing` method generator (around line 1325) to branch on `:sincospi`, returning `(missing, missing)` for that function and `missing` for all others; ensure `:sincospi` remains in the loop list next to `:cospi` and `:tanpi` |
 | `test/math.jl` | Add regression test verifying `sincospi(missing)` returns `(missing, missing)` and that destructuring succeeds |
 
 ### Files NOT to Modify
@@ -161,6 +159,102 @@ s, c = sincospi(1.0)
 
 ---
 
+## Tests
+
+### Test 1: `sincospi(missing)` returns tuple (AC-1)
+**Type:** Unit Test  
+**File:** `test/math.jl`  
+**Approach:** Verify that `sincospi(missing)` returns `(missing, missing)` and that the result is a `Tuple{Missing, Missing}`
+
+```julia
+@testset "sincospi(missing) returns tuple" begin
+    result = sincospi(missing)
+    @test result === (missing, missing)
+    @test result isa Tuple{Missing, Missing}
+end
+```
+
+---
+
+### Test 2: Destructuring assignment succeeds (AC-2)
+**Type:** Unit Test  
+**File:** `test/math.jl`  
+**Approach:** Verify that destructuring `s, c = sincospi(missing)` succeeds without raising `MethodError` and both values are `missing`
+
+```julia
+@testset "sincospi(missing) destructuring" begin
+    s, c = sincospi(missing)
+    @test s === missing
+    @test c === missing
+end
+```
+
+---
+
+### Test 3: Other trig functions with `missing` are unchanged (AC-3)
+**Type:** Unit Test  
+**File:** `test/math.jl`  
+**Approach:** Verify that `sincos`, `sincosd`, `sinpi`, `cospi`, and `tanpi` still return the expected `missing` values
+
+```julia
+@testset "other trig missing behavior unchanged" begin
+    @test sincos(missing) === (missing, missing)
+    @test sincosd(missing) === (missing, missing)
+    @test sinpi(missing) === missing
+    @test cospi(missing) === missing
+    @test tanpi(missing) === missing
+end
+```
+
+---
+
+### Test 4: Numeric behavior is unchanged (AC-4)
+**Type:** Unit Test  
+**File:** `test/math.jl`  
+**Approach:** Verify that `sincospi` with numeric arguments returns the same values as before the fix
+
+```julia
+@testset "sincospi numeric behavior unchanged" begin
+    s, c = sincospi(0.5)
+    @test s ≈ 1.0
+    @test c ≈ 0.0
+    
+    s, c = sincospi(1.0)
+    @test s ≈ 0.0
+    @test c ≈ -1.0
+end
+```
+
+---
+
+### Test 5: Math tests pass (AC-5)
+**Type:** Integration Test  
+**File:** CI/Manual execution  
+**Approach:** Run the full math test suite to verify no regressions
+
+**Command:**
+```bash
+julia --startup-file=no test/runtests.jl math
+```
+
+**Expected:** Exit code 0, all tests pass
+
+---
+
+### Test 6: Whitespace check passes (AC-6)
+**Type:** Code Quality Test  
+**File:** CI/Manual execution  
+**Approach:** Run the whitespace checker to verify style compliance
+
+**Command:**
+```bash
+julia --startup-file=no contrib/check-whitespace.jl
+```
+
+**Expected:** Exit code 0, no violations reported
+
+---
+
 ## Open Questions
 
 _None — the ticket provides clear scope and implementation guidance._
@@ -169,7 +263,8 @@ _None — the ticket provides clear scope and implementation guidance._
 
 ## Notes
 
-- The fix is a **one-line removal** from the shared generator list and a **one-line addition** of the dedicated method
+- The fix is a **one-line modification** to the shared generator's `Missing` method line, adding a conditional expression
+- `:sincospi` remains in the shared loop list, positioned next to `:cospi` and `:tanpi`
 - The regression test is **~5 lines** added to the existing `test/math.jl` file
 - **No breaking changes:** Numeric behavior is preserved; only the `missing` edge case changes
 - **Documentation impact:** The existing docstring already states `sincospi` returns a tuple, so no doc changes are needed

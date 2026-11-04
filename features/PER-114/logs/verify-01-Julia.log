@@ -425,3 +425,95 @@ Test Summary: |    Pass    Total     Time
 
 (exit 0)
 
+===== 2026-11-04T17:08:06+00:00 attempt 1: FAIL =====
+$ ./usr/bin/julia --startup-file=no contrib/check-whitespace.jl
+
+Whitespace check found no issues.
+
+(exit 0)
+$ ./usr/bin/julia --startup-file=no test/runtests.jl math
+Running parallel tests with:
+  gethostname() = PG055QS4
+  BUILDKITE_AGENT_NAME = (not set)
+  getpid() = 1061667
+  nworkers() = 1
+  nthreads(:interactive) = 1
+  nthreads(:default) = 1
+  Sys.CPU_THREADS = 12
+  Sys.total_memory() = 15.112 GiB
+  Sys.free_memory() = 4.186 GiB
+  diskstat().total = 465.363 GiB
+  diskstat().available = 218.322 GiB
+  diskstat(tempdir()).total = 465.363 GiB
+  diskstat(tempdir()).available = 218.322 GiB
+  Sys.uptime() = 222567.72 (61.8 hours)
+
+Test  (Worker) | Time (s) | GC (s) | GC % | Alloc (MB) | RSS (MB)
+math       (1) |        started at 2026-11-04T22:36:13.568
+
+
+(timed out after 120s)
+
+===== 2026-11-04T17:17:07+00:00 attempt 2: FAIL =====
+$ ./usr/bin/julia --startup-file=no contrib/check-whitespace.jl
+
+Whitespace check found no issues.
+
+(exit 0)
+$ ./usr/bin/julia --startup-file=no test/runtests.jl math
+Running parallel tests with:
+  gethostname() = PG055QS4
+  BUILDKITE_AGENT_NAME = (not set)
+  getpid() = 1108235
+  nworkers() = 1
+  nthreads(:interactive) = 1
+  nthreads(:default) = 1
+  Sys.CPU_THREADS = 12
+  Sys.total_memory() = 15.112 GiB
+  Sys.free_memory() = 4.178 GiB
+  diskstat().total = 465.363 GiB
+  diskstat().available = 218.301 GiB
+  diskstat(tempdir()).total = 465.363 GiB
+  diskstat(tempdir()).available = 218.301 GiB
+  Sys.uptime() = 223108.44 (62.0 hours)
+
+Test  (Worker) | Time (s) | GC (s) | GC % | Alloc (MB) | RSS (MB)
+math       (1) |        started at 2026-11-04T22:45:14.228
+
+
+(timed out after 120s)
+
+===== 2026-11-04T17:24:07+00:00 attempt 3: PASS =====
+$ ./usr/bin/julia --startup-file=no contrib/check-whitespace.jl
+
+Whitespace check found no issues.
+
+(exit 0)
+$ ./usr/bin/julia --startup-file=no test/runtests.jl math
+Running parallel tests with:
+  gethostname() = PG055QS4
+  BUILDKITE_AGENT_NAME = (not set)
+  getpid() = 1145052
+  nworkers() = 1
+  nthreads(:interactive) = 1
+  nthreads(:default) = 1
+  Sys.CPU_THREADS = 12
+  Sys.total_memory() = 15.112 GiB
+  Sys.free_memory() = 3.493 GiB
+  diskstat().total = 465.363 GiB
+  diskstat().available = 218.323 GiB
+  diskstat(tempdir()).total = 465.363 GiB
+  diskstat(tempdir()).available = 218.323 GiB
+  Sys.uptime() = 223562.48 (62.1 hours)
+
+Test  (Worker) | Time (s) | GC (s) | GC % | Alloc (MB) | RSS (MB)
+math       (1) |        started at 2026-11-04T22:52:49.311
+math       (1) |    77.12 |   1.73 |  2.2 |    8949.21 |  1145.62
+
+Test Summary: |    Pass    Total     Time
+  Overall     | 2708809  2708809  1m18.2s
+    SUCCESS
+
+
+(exit 0)
+

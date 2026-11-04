@@ -1,4 +1,8 @@
 Fix these forge PR review comments (auto-route):
 
-### Julia comment 4470004872
-Required change: in the new sincospi(missing) test, delete the extra checks for sincos, sincosd, sinpi, cospi, and tanpi. This change did not touch those functions, so those tests are duplicates of tests that already exist. Keep only the new checks that sincospi(missing) returns (missing, missing) and that the two values can be split apart.
+### Julia comment 4470564575
+Required change: in base/math.jl, put :sincospi back in the shared loop and branch on the Missing line. Delete the comment that starts "Same Real fallback", delete the separate function sincospi(x::Real), and delete sincospi(::Missing) = (missing, missing). The Missing line must be:
+
+    @eval $(f)(::Missing) = $(f === :sincospi ? :(missing, missing) : (:missing))
+
+The loop list must include :sincospi again, next to :cospi and :tanpi.

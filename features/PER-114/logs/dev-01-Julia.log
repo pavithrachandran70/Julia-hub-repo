@@ -189,3 +189,44 @@ The regression test in `test/math.jl` checks `sincospi(missing) === (missing, mi
 Files changed:
 - `base/math.jl`
 - `test/math.jl`The math test suite finished successfully: 2,708,659 tests passed in about 61 seconds, with no failures.
+`sincospi(missing)` again returns `(missing, missing)` from the shared `Missing` generator in `base/math.jl`, and the math tests pass.
+
+`:sincospi` is back in the shared loop next to `:cospi` and `:tanpi`. The separate `sincospi(x::Real)` method, `sincospi(::Missing) = (missing, missing)`, and the "Same Real fallback" comment are gone. The `Missing` line is:
+
+```julia
+@eval $(f)(::Missing) = $(f === :sincospi ? :(missing, missing) : (:missing))
+```
+
+`test/math.jl` now checks the tuple return, destructuring, the other `missing` trig results, and numeric `sincospi` values.
+
+`test/runtests.jl math --revise` finished with 2,708,512 passes. `contrib/check-whitespace.jl` reported no issues.
+
+Files changed: `base/math.jl`, `test/math.jl`.The math test suite finished successfully: 2,708,512 tests passed in about 3 minutes 50 seconds. `sincospi(missing)` now returns `(missing, missing)` from the shared generator in `base/math.jl`.
+`sincospi(missing)` now returns `(missing, missing)` from the shared `Missing` generator in `base/math.jl`, and the math tests passed.
+
+`:sincospi` is back in the shared loop next to `:cospi` and `:tanpi`. The separate `sincospi(x::Real)` method, `sincospi(::Missing) = (missing, missing)`, and the "Same Real fallback" comment are gone. The generator line is:
+
+```1331:1331:base/math.jl
+    @eval $(f)(::Missing) = $(f === :sincospi ? :(missing, missing) : (:missing))
+```
+
+`test/math.jl` covers the tuple result, destructuring, the other trig `missing` cases, and numeric `sincospi` values.
+
+`./usr/bin/julia --startup-file=no test/runtests.jl math` finished with exit code 0 (2,708,428 passed). The whitespace check on `base/math.jl` and `test/math.jl` reported no issues. Reloading `Base` confirmed `sincospi(missing) === (missing, missing)`, while `sinpi`, `cospi`, and `tanpi` still return a single `missing`.
+
+Files changed: `base/math.jl`, `test/math.jl`. `.gitignore` was already modified and was left as-is.The math test suite finished successfully: 2,708,428 tests passed, exit code 0. `sincospi(missing)` returns `(missing, missing)` from the shared generator in `base/math.jl`.
+`sincospi(missing)` now returns `(missing, missing)` from the shared `Missing` generator in `base/math.jl`.
+
+`:sincospi` is back in that loop, next to `:cospi` and `:tanpi`. The generated method is:
+
+```1331:1331:base/math.jl
+    @eval $(f)(::Missing) = $(f === :sincospi ? :(missing, missing) : (:missing))
+```
+
+The separate `sincospi(x::Real)` fallback, `sincospi(::Missing) = (missing, missing)`, and the "Same Real fallback" comment are gone. Other functions in the loop still return a single `missing`.
+
+`test/math.jl` covers the tuple result, destructuring, the other `*pi`/`sincos`/`sincosd` `missing` cases, and numeric `sincospi` values.
+
+`./usr/bin/julia --startup-file=no test/runtests.jl math` finished with exit code 0 (2,708,538 passes). Whitespace check on both files reported no issues.
+
+Files changed: `base/math.jl`, `test/math.jl`.The math test suite finished successfully: 2,708,538 tests passed in about 79 seconds, with exit code 0.
