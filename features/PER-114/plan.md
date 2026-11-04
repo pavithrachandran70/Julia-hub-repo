@@ -14,7 +14,7 @@ Single-file behavioral fix in base/math.jl to make sincospi(missing) return a tu
 
 1. [x] **analyst (inline_story)** — Convert ticket into one implementable story with Given/When/Then acceptance criteria and technical notes for the single-file fix.
    - focus: Focus on the specific method signature change for sincospi(::Missing) and the regression test location; keep the scope narrow to base/math.jl and test/math.jl only.
-2. [ ] **architect_gate (review)** _(auto)_ — Human approval of specs and this plan before Dev.
+2. [x] **architect_gate (review)** _(auto)_ — Human approval of specs and this plan before Dev.
 3. [ ] **dev** _(auto)_ — Loop delivery.
 4. [ ] **pre_pr_qa** _(auto)_ — Loop delivery.
 5. [ ] **open_pr** _(auto)_ — Loop delivery.

@@ -1,34 +1,34 @@
 ---
 schema_version: 1
 key: PER-114
-status: waiting_architect_review
-current_node: architect_gate
+status: escalated
+current_node: dev
 track: quick
 involved_repos:
 - Julia
 depends_on: []
 owner: pavc
-lease_until: '2026-11-06T07:12:03.201971+00:00'
-revision: 14
+lease_until: '2026-11-06T07:14:29.542341+00:00'
+revision: 25
 hub_sha: null
 ticket_hash: a4e6eb297ce46101
 jira_hash: a4e6eb297ce46101
-tpm_approved: false
-specs_locked: false
+tpm_approved: true
+specs_locked: true
 skills_lock:
   bmad: 1cbcfa272fe65787c06a1fa164a901f46117cca7
 stories:
 - 01-Julia
 child_ticket_keys: []
 critic_iterations: 0
-dev_retries: 0
+dev_retries: 3
 pr_revision_rounds: 0
 gate_rounds: {}
 pr_ids:
   hub_plan: '1'
   hub_arch: '2'
   hub: '2'
-waiting_for: architect_review
+waiting_for: dev_failure
 tokens_in: 25533
 tokens_out: 3422
 cost_anthropic_usd: 0.127585
@@ -61,6 +61,18 @@ history:
 - node: architect_gate
   note: awaiting human hub PR approval
   at: '2026-11-04T07:13:17.303566+00:00'
+- node: architect_gate
+  note: approved via hub PR (reconcile)
+  at: '2026-11-04T07:14:29.526143+00:00'
+- node: architect_gate
+  note: "forge unlocked architect_review \u2192 resume"
+  at: '2026-11-04T07:14:29.542368+00:00'
+- node: dev
+  note: starting
+  at: '2026-11-04T07:14:30.931407+00:00'
+- node: dev
+  note: 'failed 01-Julia: lint failed'
+  at: '2026-11-04T07:29:33.744029+00:00'
 ---
 
 # Feature state
