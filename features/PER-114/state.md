@@ -1,7 +1,7 @@
 ---
 schema_version: 1
 key: PER-114
-status: escalated
+status: in_development
 current_node: dev
 track: quick
 involved_repos:
@@ -9,7 +9,7 @@ involved_repos:
 depends_on: []
 owner: pavc
 lease_until: '2026-11-06T07:14:29.542341+00:00'
-revision: 42
+revision: 50
 hub_sha: null
 ticket_hash: a4e6eb297ce46101
 jira_hash: a4e6eb297ce46101
@@ -21,14 +21,14 @@ stories:
 - 01-Julia
 child_ticket_keys: []
 critic_iterations: 0
-dev_retries: 3
+dev_retries: 2
 pr_revision_rounds: 0
 gate_rounds: {}
 pr_ids:
   hub_plan: '1'
   hub_arch: '2'
   hub: '2'
-waiting_for: dev_failure
+waiting_for: null
 tokens_in: 25533
 tokens_out: 3422
 cost_anthropic_usd: 0.127585
@@ -88,6 +88,12 @@ history:
 - node: dev
   note: 'failed 01-Julia: test failed'
   at: '2026-11-04T08:01:35.129325+00:00'
+- node: dev
+  note: starting
+  at: '2026-11-04T08:20:51.329945+00:00'
+- node: dev
+  note: done 01-Julia
+  at: '2026-11-04T08:52:42.261691+00:00'
 ---
 
 # Feature state

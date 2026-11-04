@@ -35,3 +35,11 @@
 2026-11-04T07:55:51.645556+00:00 dev cursor 01-Julia attempt=3
 2026-11-04T08:01:35.095481+00:00 dev verify 01-Julia FAIL attempt=3
 2026-11-04T08:01:35.133223+00:00 node end dev waiting=dev_failure
+2026-11-04T08:20:51.329487+00:00 heartbeat dev
+2026-11-04T08:20:51.329752+00:00 node start dev
+2026-11-04T08:20:51.439421+00:00 dev cursor 01-Julia attempt=1
+2026-11-04T08:28:43.748604+00:00 dev verify 01-Julia FAIL attempt=1
+2026-11-04T08:28:43.853441+00:00 dev cursor 01-Julia attempt=2
+2026-11-04T08:39:43.712065+00:00 dev verify 01-Julia FAIL attempt=2
+2026-11-04T08:39:43.737230+00:00 dev cursor 01-Julia attempt=3
+2026-11-04T08:52:42.170341+00:00 dev verify 01-Julia PASS attempt=3

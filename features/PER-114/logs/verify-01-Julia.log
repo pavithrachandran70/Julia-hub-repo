@@ -94,3 +94,217 @@ in expression starting at /home/pavc/.adlc/worktrees/Julia/PER-114/Julia/test/ru
 
 (exit 1)
 
+===== 2026-11-04T08:28:43+00:00 attempt 1: FAIL =====
+$ julia --startup-file=no contrib/check-whitespace.jl
+
+Whitespace check found no issues.
+
+(exit 0)
+$ julia +1.15-nightly --startup-file=no test/runtests.jl math
+Running parallel tests with:
+  getpid() = 3104111
+  nworkers() = 1
+  nthreads(:interactive) = 1
+  nthreads(:default) = 1
+  Sys.CPU_THREADS = 12
+  Sys.total_memory() = 15.112 GiB
+  Sys.free_memory() = 3.354 GiB
+  Sys.uptime() = 191435.37 (53.2 hours)
+
+Test  (Worker) | Time (s) | GC (s) | GC % | Alloc (MB) | RSS (MB)
+math       (1) |        started at 2026-11-04T13:57:20.120
+math       (1) |         failed at 2026-11-04T13:58:42.578
+Test Failed at /home/pavc/.adlc/worktrees/Julia/PER-114/Julia/test/math.jl:694
+  Expression: sincospi(missing) === (missing, missing)
+   Evaluated: missing === (missing, missing)
+Error During Test at /home/pavc/.adlc/worktrees/Julia/PER-114/Julia/test/math.jl:693
+  Got exception outside of a @test
+  MethodError: no method matching iterate(::Missing)
+  The function `iterate` exists, but no method is defined for this combination of argument types.
+  Closest candidates are:
+    iterate(!Matched::Base.MethodSpecializations)
+     @ Base runtime_internals.jl:2060
+    iterate(!Matched::Base.MethodSpecializations, !Matched::Nothing)
+     @ Base runtime_internals.jl:2066
+    iterate(!Matched::Base.MethodSpecializations, !Matched::Int64)
+     @ Base runtime_internals.jl:2067
+    ...
+  Stacktrace:
+   [1] indexed_iterate(I::Missing, i::Int64)
+     @ Base tuple.jl:164
+   [2] macro expansion
+     @ ~/.adlc/worktrees/Julia/PER-114/Julia/test/math.jl:695 [inlined]
+   [3] macro expansion
+     @ ~/.julia/juliaup/julia-1.15-nightly/share/julia/stdlib/v1.15/Test/src/Test.jl:2252 [inlined]
+   [4] macro expansion
+     @ ~/.adlc/worktrees/Julia/PER-114/Julia/test/math.jl:694 [inlined]
+   [5] macro expansion
+     @ ~/.julia/juliaup/julia-1.15-nightly/share/julia/stdlib/v1.15/Test/src/Test.jl:2252 [inlined]
+   [6] top-level scope
+     @ ~/.adlc/worktrees/Julia/PER-114/Julia/test/math.jl:570
+
+
+Test Summary: |    Pass  Fail  Error    Total     Time
+  Overall     | 2708560     1      1  2708562  1m25.4s
+    math      | 2708560     1      1  2708562  1m23.9s
+    FAILURE
+
+The global RNG seed was 0xb4b1911610aa3fe9da14431086beb868.
+
+Error in testset math:
+Test Failed at /home/pavc/.adlc/worktrees/Julia/PER-114/Julia/test/math.jl:694
+  Expression: sincospi(missing) === (missing, missing)
+   Evaluated: missing === (missing, missing)
+Error in testset math:
+Error During Test at /home/pavc/.adlc/worktrees/Julia/PER-114/Julia/test/math.jl:693
+  Got exception outside of a @test
+  MethodError: no method matching iterate(::Missing)
+  The function `iterate` exists, but no method is defined for this combination of argument types.
+  Closest candidates are:
+    iterate(!Matched::Base.MethodSpecializations)
+     @ Base runtime_internals.jl:2060
+    iterate(!Matched::Base.MethodSpecializations, !Matched::Nothing)
+     @ Base runtime_internals.jl:2066
+    iterate(!Matched::Base.MethodSpecializations, !Matched::Int64)
+     @ Base runtime_internals.jl:2067
+    ...
+  Stacktrace:
+   [1] indexed_iterate(I::Missing, i::Int64)
+     @ Base tuple.jl:164
+   [2] macro expansion
+     @ ~/.adlc/worktrees/Julia/PER-114/Julia/test/math.jl:695 [inlined]
+   [3] macro expansion
+     @ ~/.julia/juliaup/julia-1.15-nightly/share/julia/stdlib/v1.15/Test/src/Test.jl:2252 [inlined]
+   [4] macro expansion
+     @ ~/.adlc/worktrees/Julia/PER-114/Julia/test/math.jl:694 [inlined]
+   [5] macro expansion
+     @ ~/.julia/juliaup/julia-1.15-nightly/share/julia/stdlib/v1.15/Test/src/Test.jl:2252 [inlined]
+   [6] top-level scope
+     @ ~/.adlc/worktrees/Julia/PER-114/Julia/test/math.jl:570
+
+ERROR: LoadError: Test run finished with errors
+in expression starting at /home/pavc/.adlc/worktrees/Julia/PER-114/Julia/test/runtests.jl:174
+
+(exit 1)
+
+===== 2026-11-04T08:39:43+00:00 attempt 2: FAIL =====
+$ julia --startup-file=no contrib/check-whitespace.jl
+
+Whitespace check found no issues.
+
+(exit 0)
+$ julia +1.15-nightly --startup-file=no test/runtests.jl math
+Running parallel tests with:
+  getpid() = 3157239
+  nworkers() = 1
+  nthreads(:interactive) = 1
+  nthreads(:default) = 1
+  Sys.CPU_THREADS = 12
+  Sys.total_memory() = 15.112 GiB
+  Sys.free_memory() = 3.272 GiB
+  Sys.uptime() = 192117.5 (53.4 hours)
+
+Test  (Worker) | Time (s) | GC (s) | GC % | Alloc (MB) | RSS (MB)
+math       (1) |        started at 2026-11-04T14:08:39.912
+math       (1) |         failed at 2026-11-04T14:09:43.192
+Test Failed at /home/pavc/.adlc/worktrees/Julia/PER-114/Julia/test/math.jl:694
+  Expression: sincospi(missing) === (missing, missing)
+   Evaluated: missing === (missing, missing)
+Error During Test at /home/pavc/.adlc/worktrees/Julia/PER-114/Julia/test/math.jl:693
+  Got exception outside of a @test
+  MethodError: no method matching iterate(::Missing)
+  The function `iterate` exists, but no method is defined for this combination of argument types.
+  Closest candidates are:
+    iterate(!Matched::Base.MethodSpecializations)
+     @ Base runtime_internals.jl:2060
+    iterate(!Matched::Base.MethodSpecializations, !Matched::Nothing)
+     @ Base runtime_internals.jl:2066
+    iterate(!Matched::Base.MethodSpecializations, !Matched::Int64)
+     @ Base runtime_internals.jl:2067
+    ...
+  Stacktrace:
+   [1] indexed_iterate(I::Missing, i::Int64)
+     @ Base tuple.jl:164
+   [2] macro expansion
+     @ ~/.adlc/worktrees/Julia/PER-114/Julia/test/math.jl:695 [inlined]
+   [3] macro expansion
+     @ ~/.julia/juliaup/julia-1.15-nightly/share/julia/stdlib/v1.15/Test/src/Test.jl:2252 [inlined]
+   [4] macro expansion
+     @ ~/.adlc/worktrees/Julia/PER-114/Julia/test/math.jl:694 [inlined]
+   [5] macro expansion
+     @ ~/.julia/juliaup/julia-1.15-nightly/share/julia/stdlib/v1.15/Test/src/Test.jl:2252 [inlined]
+   [6] top-level scope
+     @ ~/.adlc/worktrees/Julia/PER-114/Julia/test/math.jl:570
+
+
+Test Summary: |    Pass  Fail  Error    Total     Time
+  Overall     | 2708412     1      1  2708414  1m04.0s
+    math      | 2708412     1      1  2708414  1m03.7s
+    FAILURE
+
+The global RNG seed was 0x5dc3ee5b258f53d74d12490aaca155d2.
+
+Error in testset math:
+Test Failed at /home/pavc/.adlc/worktrees/Julia/PER-114/Julia/test/math.jl:694
+  Expression: sincospi(missing) === (missing, missing)
+   Evaluated: missing === (missing, missing)
+Error in testset math:
+Error During Test at /home/pavc/.adlc/worktrees/Julia/PER-114/Julia/test/math.jl:693
+  Got exception outside of a @test
+  MethodError: no method matching iterate(::Missing)
+  The function `iterate` exists, but no method is defined for this combination of argument types.
+  Closest candidates are:
+    iterate(!Matched::Base.MethodSpecializations)
+     @ Base runtime_internals.jl:2060
+    iterate(!Matched::Base.MethodSpecializations, !Matched::Nothing)
+     @ Base runtime_internals.jl:2066
+    iterate(!Matched::Base.MethodSpecializations, !Matched::Int64)
+     @ Base runtime_internals.jl:2067
+    ...
+  Stacktrace:
+   [1] indexed_iterate(I::Missing, i::Int64)
+     @ Base tuple.jl:164
+   [2] macro expansion
+     @ ~/.adlc/worktrees/Julia/PER-114/Julia/test/math.jl:695 [inlined]
+   [3] macro expansion
+     @ ~/.julia/juliaup/julia-1.15-nightly/share/julia/stdlib/v1.15/Test/src/Test.jl:2252 [inlined]
+   [4] macro expansion
+     @ ~/.adlc/worktrees/Julia/PER-114/Julia/test/math.jl:694 [inlined]
+   [5] macro expansion
+     @ ~/.julia/juliaup/julia-1.15-nightly/share/julia/stdlib/v1.15/Test/src/Test.jl:2252 [inlined]
+   [6] top-level scope
+     @ ~/.adlc/worktrees/Julia/PER-114/Julia/test/math.jl:570
+
+ERROR: LoadError: Test run finished with errors
+in expression starting at /home/pavc/.adlc/worktrees/Julia/PER-114/Julia/test/runtests.jl:174
+
+(exit 1)
+
+===== 2026-11-04T08:52:42+00:00 attempt 3: PASS =====
+$ julia --startup-file=no contrib/check-whitespace.jl
+
+Whitespace check found no issues.
+
+(exit 0)
+$ julia +1.15-nightly --startup-file=no test/runtests.jl math
+Running parallel tests with:
+  getpid() = 3217979
+  nworkers() = 1
+  nthreads(:interactive) = 1
+  nthreads(:default) = 1
+  Sys.CPU_THREADS = 12
+  Sys.total_memory() = 15.112 GiB
+  Sys.free_memory() = 3.458 GiB
+  Sys.uptime() = 192896.74 (53.6 hours)
+
+Test  (Worker) | Time (s) | GC (s) | GC % | Alloc (MB) | RSS (MB)
+math       (1) |        started at 2026-11-04T14:21:39.175
+math       (1) |    62.36 |   1.80 |  2.9 |    8952.93 |  1137.12
+
+Test Summary: |    Pass    Total     Time
+  Overall     | 2708503  2708503  1m03.2s
+    SUCCESS
+
+
+(exit 0)
+
