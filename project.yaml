@@ -31,7 +31,7 @@ repos:
     role: app
     base: master
     commands:
-      test: julia +1.15-nightly --startup-file=no test/runtests.jl math
+      test: ./usr/bin/julia --startup-file=no test/runtests.jl math
       lint: julia --startup-file=no contrib/check-whitespace.jl
     url: https://github.com/pavithrachandran70/julia
 dependency_order:
