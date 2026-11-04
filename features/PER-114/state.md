@@ -1,15 +1,15 @@
 ---
 schema_version: 1
 key: PER-114
-status: in_development
-current_node: dev
+status: pr_reviewed
+current_node: pr_review
 track: quick
 involved_repos:
 - Julia
 depends_on: []
 owner: pavc
 lease_until: '2026-11-06T07:14:29.542341+00:00'
-revision: 50
+revision: 54
 hub_sha: null
 ticket_hash: a4e6eb297ce46101
 jira_hash: a4e6eb297ce46101
@@ -28,10 +28,11 @@ pr_ids:
   hub_plan: '1'
   hub_arch: '2'
   hub: '2'
-waiting_for: null
-tokens_in: 25533
-tokens_out: 3422
-cost_anthropic_usd: 0.127585
+  Julia: '1'
+waiting_for: feature_pr_human
+tokens_in: 30249
+tokens_out: 3429
+cost_anthropic_usd: 0.141838
 history:
 - node: intake
   note: snapshot written
@@ -94,6 +95,21 @@ history:
 - node: dev
   note: done 01-Julia
   at: '2026-11-04T08:52:42.261691+00:00'
+- node: pre_pr_qa
+  note: report written
+  at: '2026-11-04T08:52:45.471051+00:00'
+- node: open_pr
+  note: push Julia ok
+  at: '2026-11-04T08:52:53.135755+00:00'
+- node: open_pr
+  note: PRs opened Julia:1
+  at: '2026-11-04T08:52:53.135782+00:00'
+- node: pr_review
+  note: diff loaded Julia chars=3492
+  at: '2026-11-04T08:52:53.969913+00:00'
+- node: pr_review
+  note: awaiting feature_pr_human
+  at: '2026-11-04T08:53:01.581409+00:00'
 ---
 
 # Feature state
