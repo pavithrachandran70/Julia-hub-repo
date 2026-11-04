@@ -1,15 +1,15 @@
 ---
 schema_version: 1
 key: PER-114
-status: pr_reviewed
-current_node: pr_review
+status: in_development
+current_node: dev
 track: quick
 involved_repos:
 - Julia
 depends_on: []
 owner: pavc
-lease_until: '2026-11-06T07:14:29.542341+00:00'
-revision: 54
+lease_until: '2026-11-06T10:26:33.799822+00:00'
+revision: 180
 hub_sha: null
 ticket_hash: a4e6eb297ce46101
 jira_hash: a4e6eb297ce46101
@@ -21,18 +21,18 @@ stories:
 - 01-Julia
 child_ticket_keys: []
 critic_iterations: 0
-dev_retries: 2
-pr_revision_rounds: 0
+dev_retries: 0
+pr_revision_rounds: 1
 gate_rounds: {}
 pr_ids:
   hub_plan: '1'
   hub_arch: '2'
   hub: '2'
   Julia: '1'
-waiting_for: feature_pr_human
-tokens_in: 30249
-tokens_out: 3429
-cost_anthropic_usd: 0.141838
+waiting_for: null
+tokens_in: 34965
+tokens_out: 3436
+cost_anthropic_usd: 0.156091
 history:
 - node: intake
   note: snapshot written
@@ -93,7 +93,7 @@ history:
   note: starting
   at: '2026-11-04T08:20:51.329945+00:00'
 - node: dev
-  note: done 01-Julia
+  note: dev re-run reset (lint command fixed); prior pass not counted done
   at: '2026-11-04T08:52:42.261691+00:00'
 - node: pre_pr_qa
   note: report written
@@ -110,6 +110,69 @@ history:
 - node: pr_review
   note: awaiting feature_pr_human
   at: '2026-11-04T08:53:01.581409+00:00'
+- node: catch_up
+  note: "unrepaired feature PR comments \u2192 fix"
+  at: '2026-11-04T10:22:38.445683+00:00'
+- node: pr_review
+  note: fix:Julia:needs_human:major:Please clean up this PR so it is acceptable upstream.
+    Make exactly these changes
+  at: '2026-11-04T10:22:44.821918+00:00'
+- node: pr_review
+  note: repair halted; still waiting for feature_pr_human
+  at: '2026-11-04T10:22:47.910447+00:00'
+- node: catch_up
+  note: "unrepaired feature PR comments \u2192 fix"
+  at: '2026-11-04T10:26:33.800138+00:00'
+- node: pr_review
+  note: fix:Julia:issue:minor:This block is a test-time workaround, not a regression
+    test. It checks `sincospi
+  at: '2026-11-04T10:26:38.692567+00:00'
+- node: pr_review
+  note: fix:Julia:issue:minor:These lines are ADLC tooling entries (.adlc/, .cursor/skills/,
+    .env, .venv/, __p
+  at: '2026-11-04T10:26:42.935122+00:00'
+- node: pr_review
+  note: 'whole-story rewrite: no path match, comments=[''4466371236''] stories=[''01-Julia'']'
+  at: '2026-11-04T10:26:58.104973+00:00'
+- node: pr_review
+  note: auto-fix tier=minor round=1
+  at: '2026-11-04T10:26:58.107984+00:00'
+- node: pr_review
+  note: "route minor \u2192 loop pr_fix_minor: dev \u2192 pre_pr_qa \u2192 pr_review"
+  at: '2026-11-04T10:26:58.746709+00:00'
+- node: dev
+  note: starting
+  at: '2026-11-04T10:26:58.747147+00:00'
+- node: dev
+  note: 'failed 01-Julia: lint failed'
+  at: '2026-11-04T10:35:41.199892+00:00'
+- node: open_pr
+  note: push Julia ok
+  at: '2026-11-04T10:35:42.407135+00:00'
+- node: pr_review
+  note: still_open Julia:4466367915
+  at: '2026-11-04T10:35:58.862002+00:00'
+- node: pr_review
+  note: resolved Julia:4466371236
+  at: '2026-11-04T10:36:11.669099+00:00'
+- node: pr_review
+  note: post-fix re-review (auto_fix=False)
+  at: '2026-11-04T10:36:11.669572+00:00'
+- node: pr_review
+  note: diff loaded Julia chars=3492
+  at: '2026-11-04T10:36:12.557356+00:00'
+- node: pr_review
+  note: awaiting feature_pr_human
+  at: '2026-11-04T10:36:17.802656+00:00'
+- node: pr_review
+  note: review fix done handled=2
+  at: '2026-11-04T10:36:17.828654+00:00'
+- node: dev
+  note: starting
+  at: '2026-11-04T10:54:05.107380+00:00'
+- node: dev
+  note: done 01-Julia
+  at: '2026-11-04T10:58:06.870483+00:00'
 ---
 
 # Feature state

@@ -308,3 +308,52 @@ Test Summary: |    Pass    Total     Time
 
 (exit 0)
 
+===== 2026-11-04T10:30:42+00:00 attempt 1: FAIL =====
+$ julia --startup-file=no contrib/check-whitespace.jl
+
+/bin/sh: 1: julia: not found
+
+(exit 127)
+
+===== 2026-11-04T10:33:08+00:00 attempt 2: FAIL =====
+$ julia --startup-file=no contrib/check-whitespace.jl
+
+/bin/sh: 1: julia: not found
+
+(exit 127)
+
+===== 2026-11-04T10:35:41+00:00 attempt 3: FAIL =====
+$ julia --startup-file=no contrib/check-whitespace.jl
+
+/bin/sh: 1: julia: not found
+
+(exit 127)
+
+===== 2026-11-04T10:58:06+00:00 attempt 1: PASS =====
+$ ./usr/bin/julia --startup-file=no contrib/check-whitespace.jl
+
+Whitespace check found no issues.
+
+(exit 0)
+$ ./usr/bin/julia --startup-file=no test/runtests.jl math
+Running parallel tests with:
+  getpid() = 3839876
+  nworkers() = 1
+  nthreads(:interactive) = 1
+  nthreads(:default) = 1
+  Sys.CPU_THREADS = 12
+  Sys.total_memory() = 15.112 GiB
+  Sys.free_memory() = 5.208 GiB
+  Sys.uptime() = 200441.85 (55.7 hours)
+
+Test  (Worker) | Time (s) | GC (s) | GC % | Alloc (MB) | RSS (MB)
+math       (1) |        started at 2026-11-04T16:27:25.527
+math       (1) |    40.61 |   1.49 |  3.7 |    8948.34 |   815.83
+
+Test Summary: |    Pass    Total   Time
+  Overall     | 2708702  2708702  42.5s
+    SUCCESS
+
+
+(exit 0)
+
