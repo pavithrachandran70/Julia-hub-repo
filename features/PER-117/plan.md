@@ -14,7 +14,7 @@ Fix binomial(typemin(T), one(T)) to return typemin(T) instead of zero by handlin
 
 1. [x] **analyst (inline_story)** — Convert the ticket into a single implementable story with acceptance criteria and technical notes.
    - focus: Focus on the k==1 special case fix before negative-n arithmetic; note the test location test/math.jl and the two verification commands.
-2. [ ] **architect_gate (review)** _(auto)_ — Human approval of specs and this plan before Dev.
+2. [x] **architect_gate (review)** _(auto)_ — Human approval of specs and this plan before Dev.
 3. [ ] **dev** _(auto)_ — Loop delivery.
 4. [ ] **pre_pr_qa** _(auto)_ — Loop delivery.
 5. [ ] **open_pr** _(auto)_ — Loop delivery.

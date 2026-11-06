@@ -1,0 +1,36 @@
+`binomial(typemin(T), 1)` now returns `typemin(T)` for signed integers. The negative-`n` path used to compute `-n + k - one(T)` first, and negating `typemin(T)` overflows, so the `k == 1` case never ran and the result was `0`.
+
+The fix is in `base/intfuncs.jl`. When `k == 1`, the function returns `n` before that negation. `binomial(n, 1) == n` for every representable integer `n`, including `typemin`.
+
+**Files changed**
+
+- `base/intfuncs.jl` — early return for `k == 1`
+- `test/math.jl` — regression tests for `Int8`, `Int64`, and `Int128`, plus `binomial(5, 1)`, `binomial(-5, 1)`, and `binomial(0, 1)`
+
+This worktree has no `./usr/bin/julia` build. The math suite was run with the existing 1.15 development binary, after loading this tree's updated `binomial`. **2,708,553 tests passed.** The whitespace check reported no issues.The math test suite finished successfully: 2,708,553 tests passed in about 86 seconds, including the new `binomial(typemin(T), 1)` cases.
+`binomial(typemin(T), 1)` now returns `typemin(T)` for signed integers. `k == 1` returns `n` before the negative-`n` step `-n + k - one(T)`, which overflows when `n` is `typemin(T)`.
+
+**Files**
+- `base/intfuncs.jl` — early `k == 1` return in `binomial`
+- `test/math.jl` — regression tests for `Int8`, `Int64`, and `Int128`, plus `binomial(n, 1) == n` for `5`, `-5`, and `0`
+
+`.gitignore` was already modified and was left as it was.
+
+**Tests**
+- Whitespace check passed.
+- This worktree has no `./usr/bin/julia` build. The math suite was run with a 1.15.0-DEV Julia from the PER-114 worktree. Against that system image the three new tests failed (`0 == typemin(T)`), because the image still has the old method.
+- With Revise loading this tree’s `base/intfuncs.jl`, `test/runtests.jl math` passed: 2,708,884 tests, 0 failures.The first math-suite run failed only on the three new `binomial(typemin(T), 1)` checks, because that Julia image still had the old method. After Revise loaded the fix from `base/intfuncs.jl`, the same suite passed: 2,708,884 tests, 0 failures.
+`binomial(typemin(T), 1)` now returns `typemin(T)` for signed integers. The `k == 1` case returns `n` before the negative-`n` rewrite, so negating `typemin(T)` no longer overflows and falls through to `0`.
+
+**Files changed**
+- `base/intfuncs.jl` — early return when `k == 1`
+- `test/math.jl` — regression tests for `Int8`, `Int64`, and `Int128`, plus `binomial(n, 1) == n` for `5`, `-5`, and `0`
+
+`.gitignore` was already modified and is not part of this fix.
+
+**Checks**
+- Against a system image built with this change: `binomial(typemin(Int8), Int8(1)) === typemin(Int8)`, and the same for `Int64` (`-9223372036854775808`). `binomial(-5, 3) == -35` and the `k == 1` identities still hold. `binomial(Int64(67), Int64(30))` still throws `OverflowError`.
+- `contrib/check-whitespace.jl` passed.
+- `./usr/bin/julia --startup-file=no test/runtests.jl math` was still precompiling the test project after about 30 seconds, so that process was stopped.The `binomial` fix is in place. `binomial(typemin(T), 1)` returns `typemin(T)` for `Int8`, `Int64`, and `Int128`, and the whitespace check passed.
+
+The math suite was stopped while it was still precompiling packages. The first system-image build failed on a bad path; the rebuild succeeded and is what the local `./usr/bin/julia` is using.
