@@ -12,11 +12,11 @@ Single-repo bug fix for Rational exponent function that crosses float boundary; 
 
 ## Steps
 
-1. [ ] **analyst (inline_story)** — Convert the well-defined ticket into a structured story with Given/When/Then and technical notes.
+1. [x] **analyst (inline_story)** — Convert the well-defined ticket into a structured story with Given/When/Then and technical notes.
    - focus: Focus on the float conversion bug and the integer-only algorithm needed; emphasize the test locations and acceptance criteria already specified.
-2. [ ] **designer (lld)** — Needs concrete implementation plan for the integer-only exponent algorithm before coding.
+2. [x] **designer (lld)** — Needs concrete implementation plan for the integer-only exponent algorithm before coding.
    - focus: Design the bit-manipulation or integer-log algorithm that avoids float conversion; specify exact file locations in base/rational.jl and test/math.jl.
-3. [ ] **test_architect (tests)** — Five explicit acceptance criteria need to be mapped to test cases in the existing test file.
+3. [x] **test_architect (tests)** — Five explicit acceptance criteria need to be mapped to test cases in the existing test file.
    - focus: Map each AC to a test case in test/math.jl; include the edge case (2^60-1)//2^60 and the invariant checks.
 4. [ ] **architect_gate (review)** _(auto)_ — Human approval of specs and this plan before Dev.
 5. [ ] **dev** _(auto)_ — Loop delivery.
