@@ -1,0 +1,1 @@
+{"story": "01-Julia", "repo": "Julia", "attempt": 1, "ok": false, "at": "2026-11-09T07:01:43+00:00", "checks": [{"name": "lint", "cmd": "./usr/bin/julia --startup-file=no contrib/check-whitespace.jl", "exit": 127, "summary": "/bin/sh: 1: ./usr/bin/julia: not found"}]}

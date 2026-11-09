@@ -1,0 +1,7 @@
+===== 2026-11-09T07:01:43+00:00 attempt 1: FAIL =====
+$ ./usr/bin/julia --startup-file=no contrib/check-whitespace.jl
+
+/bin/sh: 1: ./usr/bin/julia: not found
+
+(exit 127)
+

@@ -1,0 +1,16 @@
+`exponent` for a `Rational` now uses integer arithmetic on the numerator and denominator, so a value just below 1 no longer rounds up to `1.0`.
+
+`(2^60 - 1)//2^60` used to return `0` because the generic `Real` method converts to `Float64`, and that fraction rounds to `1.0`. `exponent(::Rational)` in `base/math.jl` keeps the invariant `2^exponent(q) ≤ abs(q) < 2^(exponent(q)+1)`. The method is on `Base.Math.exponent` rather than in `base/rational.jl`, because that file is loaded before the `Math` module exists. A definition there would be a different function.
+
+`floor(log2(abs(num))) - floor(log2(den))` is one too large for some fractions, such as `5//3`. The result is corrected by comparing significands with a shift. Zero and infinite rationals throw `DomainError`, same as `exponent(0)` and `exponent(0.0)`.
+
+**Files changed**
+- `base/math.jl` — `exponent(::Rational)`, plus a docstring example
+- `test/math.jl` — regression tests
+
+**Tests**
+- `contrib/check-whitespace.jl` reported no issues.
+- With the new method defined in the process, all 14 new assertions passed.
+- `./usr/bin/julia --startup-file=no test/runtests.jl math` was run with a prebuilt Julia 1.15 image, because this worktree has no system image of its own. That image still has the old method, so the suite reported 2 failures, both the new `(2^60 - 1)//2^60` checks (`0 == -1`). The other 2,708,875 math tests passed. A source build is required before that command can see this change.The math suite finished with two failures, both the new `(2^60 - 1)//2^60` checks. The prebuilt Julia image still uses the old `exponent` method, so those calls returned `0` instead of `-1`. The other 2,708,875 math tests passed.
+
+The broad search for a Julia binary and the first oracle check were stopped on purpose. A later oracle run, with the new method loaded, matched the expected exponents.

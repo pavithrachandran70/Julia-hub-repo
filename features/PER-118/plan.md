@@ -18,7 +18,7 @@ Single-repo bug fix for Rational exponent function that crosses float boundary; 
    - focus: Design the bit-manipulation or integer-log algorithm that avoids float conversion; specify exact file locations in base/rational.jl and test/math.jl.
 3. [x] **test_architect (tests)** — Five explicit acceptance criteria need to be mapped to test cases in the existing test file.
    - focus: Map each AC to a test case in test/math.jl; include the edge case (2^60-1)//2^60 and the invariant checks.
-4. [ ] **architect_gate (review)** _(auto)_ — Human approval of specs and this plan before Dev.
+4. [x] **architect_gate (review)** _(auto)_ — Human approval of specs and this plan before Dev.
 5. [ ] **dev** _(auto)_ — Loop delivery.
 6. [ ] **pre_pr_qa** _(auto)_ — Loop delivery.
 7. [ ] **open_pr** _(auto)_ — Loop delivery.
