@@ -1,0 +1,127 @@
+{
+  "schema_version": 1,
+  "key": "PER-118",
+  "source": "llm",
+  "summary": "Single-repo bug fix for Rational exponent function that crosses float boundary; needs inline story with implementation guidance.",
+  "track_hint": "standard",
+  "loop": "story_with_design",
+  "delivery": "delivery",
+  "pr_fix": [
+    "pr_fix_minor",
+    "pr_fix_moderate"
+  ],
+  "loops": [
+    "story_with_design",
+    "delivery",
+    "pr_fix_minor",
+    "pr_fix_moderate"
+  ],
+  "steps": [
+    {
+      "node": "analyst",
+      "activity": "inline_story",
+      "why": "Convert the well-defined ticket into a structured story with Given/When/Then and technical notes.",
+      "instructions": "Focus on the float conversion bug and the integer-only algorithm needed; emphasize the test locations and acceptance criteria already specified.",
+      "auto": false,
+      "status": "done",
+      "rerun": false
+    },
+    {
+      "node": "designer",
+      "activity": "lld",
+      "why": "Needs concrete implementation plan for the integer-only exponent algorithm before coding.",
+      "instructions": "Design the bit-manipulation or integer-log algorithm that avoids float conversion; specify exact file locations in base/rational.jl and test/math.jl.",
+      "auto": false,
+      "status": "done",
+      "rerun": false
+    },
+    {
+      "node": "test_architect",
+      "activity": "tests",
+      "why": "Five explicit acceptance criteria need to be mapped to test cases in the existing test file.",
+      "instructions": "Map each AC to a test case in test/math.jl; include the edge case (2^60-1)//2^60 and the invariant checks.",
+      "auto": false,
+      "status": "done",
+      "rerun": false
+    },
+    {
+      "node": "architect_gate",
+      "activity": "review",
+      "why": "Human approval of specs and this plan before Dev.",
+      "instructions": "",
+      "auto": true,
+      "status": "pending",
+      "rerun": false
+    },
+    {
+      "node": "dev",
+      "activity": null,
+      "why": "Loop delivery.",
+      "instructions": "",
+      "auto": true,
+      "status": "pending",
+      "rerun": false
+    },
+    {
+      "node": "pre_pr_qa",
+      "activity": null,
+      "why": "Loop delivery.",
+      "instructions": "",
+      "auto": true,
+      "status": "pending",
+      "rerun": false
+    },
+    {
+      "node": "open_pr",
+      "activity": null,
+      "why": "Loop delivery.",
+      "instructions": "",
+      "auto": true,
+      "status": "pending",
+      "rerun": false
+    },
+    {
+      "node": "pr_review",
+      "activity": null,
+      "why": "Loop delivery.",
+      "instructions": "",
+      "auto": true,
+      "status": "pending",
+      "rerun": false
+    },
+    {
+      "node": "merge",
+      "activity": null,
+      "why": "Loop delivery.",
+      "instructions": "",
+      "auto": true,
+      "status": "pending",
+      "rerun": false
+    }
+  ],
+  "skipped": [
+    {
+      "node": "tpm_gate",
+      "why": "Scope, acceptance criteria and expected behavior are clearly stated in the ticket; no product ambiguity."
+    },
+    {
+      "node": "critic",
+      "why": "Single inline story with no breakdown or HLD; nothing to cross-check for consistency."
+    }
+  ],
+  "suggested_roles": [],
+  "suggested_loops": [],
+  "notes": [],
+  "created_at": "2026-11-09T06:28:11.437357+00:00",
+  "version": 1,
+  "trigger": "ticket",
+  "gate": null,
+  "feedback": [],
+  "feedback_errors": [],
+  "seen_feedback_ids": [],
+  "change_summary": "",
+  "changes": null,
+  "addressed": [],
+  "unresolved_questions": [],
+  "requires_review": true
+}
