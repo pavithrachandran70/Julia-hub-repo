@@ -1,0 +1,18 @@
+# Course correction PER-187 (auto from critic exhaustion)
+
+Authoritative for the next run. Human: review/edit this file, then re-run:
+`adlc start PER-187 --skip-dev` or `adlc review request-changes PER-187 --note "..."` then `adlc resume PER-187`.
+
+## Critic mismatches to resolve
+
+- **AC count mismatch**: Ticket lists 5 acceptance criteria; requirements.md lists 5 requirements (REQ-1 through REQ-5); story lists 5 acceptance criteria (AC-1 through AC-5). Count matches across artifacts.
+- **Test count mismatch**: Story Tests section claims "5 test assertions" but lists only 4 numbered assertions plus one verification step "Full test/math.jl suite passes (AC-4)" which is not a new assertion. AC-4 is "test suite passes" — running existing tests, not adding a new one. The story should add exactly 4 new test assertions (AC-1, AC-2, two for AC-3) plus verify AC-4 and AC-5 by running commands, not by adding assertions.
+- **File paths contradicting repo context**: Every artifact references `base/intfuncs.jl`, `base/rational.jl`, and `test/math.jl`, but the repo tree at `/home/pavc/Documents/Julia-Repo` contains only C/C++ source files under `src/` and no Julia `.jl` files. The ticket states "Repo Julia only" and the repo-context references Julia tooling (`julia --startup-file=no test/runtests.jl math`), but the repo-tree shows no `.jl` files exist. The story acknowledges this mismatch in Implementation Notes and Open Questions but does not resolve it — the file paths remain invalid for the actual repository tree.
+- **Stack/language vs repo context**: Ticket and all artifacts assume Julia `.jl` source code exists in the repository, but the repo tree shows only C/C++ files (`.c`, `.cpp`, `.h`, `.S`). The test commands reference `julia` and `.jl` test files, but no such files are present in the tree. The story notes this in "Open Questions" and "Implementation Notes" but does not declare the work blocked or adjust the file paths to match the actual tree.
+
+## Repair rules
+
+- Keep ticket/repo labels (`repo:*`) and out-of-scope constraints.
+- Prefer one complete story LLD per involved repo when possible; do not leave truncated mid-sentence files.
+- Align AC counts, test counts, and file paths across requirements ↔ HLD ↔ breakdown ↔ stories.
+- Rewrite incomplete artifacts fully (no cutoffs).

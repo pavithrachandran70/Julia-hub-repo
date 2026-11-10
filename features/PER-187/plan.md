@@ -12,7 +12,7 @@ Fix exponent() for Rational numbers to avoid float conversion and return correct
 
 ## Steps
 
-1. [ ] **analyst (inline_story)** — Convert ticket into implementable Given/When/Then story with technical notes for the exponent fix.
+1. [x] **analyst (inline_story)** — Convert ticket into implementable Given/When/Then story with technical notes for the exponent fix.
    - focus: Focus on the algorithm for computing exponent without float conversion: use numerator and denominator exponents directly. Include edge cases from acceptance criteria.
 2. [ ] **critic (consistency_check)** — Single artifact (one story) with clear acceptance criteria needs consistency check to ensure AC coverage and technical correctness.
    - focus: Verify the story's implementation approach handles the power-of-two boundary correctly and all five acceptance criteria are testable.
