@@ -29,3 +29,16 @@ The formula in the story, subtracting 1 whenever `|p| < |q|`, is one too low on 
 - `test/math.jl` with this method loaded: exit 0.
 - `./usr/bin/julia --startup-file=no test/runtests.jl math`: exit 0 (2,708,450 passes).
 - Whitespace check on both files: clean.`exponent(::Rational)` is implemented in `base/math.jl`, with the new cases in `test/math.jl`. The math suite passed, including `(2^60 - 1) // 2^60` returning `-1`.
+`exponent` for rationals now uses integer numerator and denominator arithmetic, so values just below a power of two no longer round through `Float64`.
+
+`exponent((2^60 - 1) // 2^60)` is `-1`. The same method returns `0` for `1//1` and `1` for `2//1`, and it satisfies `2^e <= abs(q) < 2^(e+1)`.
+
+The exponent is `exponent(numerator) - exponent(denominator)`, then one less when the rational is still below that power of two. Comparing the absolute values alone is not that test: it would report `-2` for `(2^60 - 1) // 2^60` and for `3//4`.
+
+**Files changed**
+- `base/math.jl` — `exponent(::Rational)`
+- `test/math.jl` — boundary, edge, and invariant cases
+
+**Checks**
+- `./usr/bin/julia --startup-file=no test/runtests.jl math` — exit 0, 2708628 passed
+- `./usr/bin/julia --startup-file=no contrib/check-whitespace.jl` — no issues

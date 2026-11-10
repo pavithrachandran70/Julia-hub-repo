@@ -34,3 +34,31 @@ $ ./usr/bin/julia --startup-file=no test/runtests.jl math
 
 (exit 127)
 
+===== 2026-11-10T11:41:06+00:00 attempt 1: PASS =====
+$ julia --startup-file=no contrib/check-whitespace.jl
+
+Whitespace check found no issues.
+
+(exit 0)
+$ ./usr/bin/julia --startup-file=no test/runtests.jl math
+Running parallel tests with:
+  getpid() = 3530916
+  nworkers() = 1
+  nthreads(:interactive) = 1
+  nthreads(:default) = 1
+  Sys.CPU_THREADS = 12
+  Sys.total_memory() = 15.112 GiB
+  Sys.free_memory() = 3.292 GiB
+  Sys.uptime() = 95832.65 (26.6 hours)
+
+Test  (Worker) | Time (s) | GC (s) | GC % | Alloc (MB) | RSS (MB)
+math       (1) |        started at 2026-11-10T17:10:02.307
+math       (1) |    63.44 |   1.48 |  2.3 |    8934.91 |  1164.14
+
+Test Summary: |    Pass    Total     Time
+  Overall     | 2708476  2708476  1m05.0s
+    SUCCESS
+
+
+(exit 0)
+
