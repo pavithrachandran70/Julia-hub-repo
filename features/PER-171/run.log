@@ -23,3 +23,6 @@
 2026-11-10T10:35:19.680100+00:00 dev cursor 01-Julia attempt=3
 2026-11-10T10:56:10.362085+00:00 dev verify 01-Julia FAIL attempt=3
 2026-11-10T10:56:10.400755+00:00 node end dev waiting=dev_failure
+2026-11-10T11:22:11.908724+00:00 heartbeat dev
+2026-11-10T11:22:11.908767+00:00 node start dev
+2026-11-10T11:22:12.026262+00:00 node end dev waiting=dirty_worktree
