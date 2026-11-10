@@ -12,7 +12,7 @@ Single-repo bug fix for exponent(::Rational) that currently returns incorrect va
 
 ## Steps
 
-1. [ ] **analyst (inline_story)** — Turn the ticket into a single implementable story with Given/When/Then acceptance criteria.
+1. [x] **analyst (inline_story)** — Turn the ticket into a single implementable story with Given/When/Then acceptance criteria.
    - focus: Focus on the specific rational exponent bug with Float64 conversion; the ticket already provides clear scope (Julia repo only, math.jl tests) and technical approach (new Rational-specific exponent method).
 2. [ ] **architect_gate (review)** _(auto)_ — Human approval of specs and this plan before Dev.
 3. [ ] **dev** _(auto)_ — Loop delivery.
