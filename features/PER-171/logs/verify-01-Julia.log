@@ -1,0 +1,36 @@
+===== 2026-11-10T10:19:53+00:00 attempt 1: FAIL =====
+$ julia --startup-file=no contrib/check-whitespace.jl
+
+Whitespace check found no issues.
+
+(exit 0)
+$ ./usr/bin/julia --startup-file=no test/runtests.jl math
+
+/bin/sh: 1: ./usr/bin/julia: not found
+
+(exit 127)
+
+===== 2026-11-10T10:35:19+00:00 attempt 2: FAIL =====
+$ julia --startup-file=no contrib/check-whitespace.jl
+
+Whitespace check found no issues.
+
+(exit 0)
+$ ./usr/bin/julia --startup-file=no test/runtests.jl math
+
+/bin/sh: 1: ./usr/bin/julia: not found
+
+(exit 127)
+
+===== 2026-11-10T10:56:10+00:00 attempt 3: FAIL =====
+$ julia --startup-file=no contrib/check-whitespace.jl
+
+Whitespace check found no issues.
+
+(exit 0)
+$ ./usr/bin/julia --startup-file=no test/runtests.jl math
+
+/bin/sh: 1: ./usr/bin/julia: not found
+
+(exit 127)
+

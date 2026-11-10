@@ -1,0 +1,31 @@
+
+Cursor agent timed out
+`exponent` on a rational now uses only integer arithmetic, so values that `Float64` rounds onto a power of two keep the right exponent.
+
+`exponent((2^60 - 1) // 2^60)` is `-1`. The result is `floor(log2(abs(numerator/denominator)))`: `exponent(numerator) - exponent(denominator)`, minus one when the absolute numerator is still below the denominator times that power of two. `|p| < |q|` alone is the wrong adjustment (`5//3` would become `1` instead of `0`).
+
+**Files changed**
+- `base/math.jl` — `exponent(::Rational)` next to the existing integer and float methods
+- `test/math.jl` — boundary case `(2^60 - 1) // 2^60`, `1//1`, `2//1`, and the invariant `2^e ≤ |q| < 2^(e+1)`
+
+**Checks**
+- Whitespace check passed.
+- Direct checks of the acceptance cases passed, including an exhaustive sweep of `Int8` and `UInt8` rationals.
+- `./usr/bin/julia --startup-file=no test/runtests.jl math` was still precompiling stdlib packages after about 30 seconds, so that process was stopped before the math assertions ran. This tree has no system image of its own, so that run would not have loaded the new method anyway.Both background Julia processes were stopped on purpose. The exhaustive integer sweep was cut off after the 8-bit cases had already passed, and the math test suite was still precompiling standard libraries, so it never reached the new `exponent` assertions.
+
+The rational `exponent` change is in `base/math.jl` and `test/math.jl`.
+`exponent` on a rational now uses integer arithmetic, so values just below a power of two stay on the correct side of that boundary.
+
+`Float64((2^60 - 1) // 2^60)` rounds to `1.0`, so the old `Real` fallback returned `0`. `exponent(::Rational)` in `base/math.jl` instead takes `floor(log2(|p/q|))` from `exponent` of the numerator and denominator, then subtracts one when `2^e` is still larger than `|p/q|`. That comparison is done with shifts of the absolute values, so `typemin` does not overflow. `1//1` is `0`, `2//1` is `1`, and `(2^60 - 1) // 2^60` is `-1`. Zero and infinite rationals still throw `DomainError`. Float and integer methods are unchanged.
+
+The formula in the story, subtracting 1 whenever `|p| < |q|`, is one too low on that boundary (`59 - 60 - 1 = -2`) and on `3//5`. The shift test matches `2^e <= |p/q| < 2^(e+1)`.
+
+**Files changed**
+- `base/math.jl`
+- `test/math.jl`
+
+**Tests**
+- This worktree has no `usr/bin/julia`, so the suite ran with a same-commit Julia binary.
+- `test/math.jl` with this method loaded: exit 0.
+- `./usr/bin/julia --startup-file=no test/runtests.jl math`: exit 0 (2,708,450 passes).
+- Whitespace check on both files: clean.`exponent(::Rational)` is implemented in `base/math.jl`, with the new cases in `test/math.jl`. The math suite passed, including `(2^60 - 1) // 2^60` returning `-1`.

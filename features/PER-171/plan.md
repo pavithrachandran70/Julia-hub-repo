@@ -14,7 +14,7 @@ Single-repo bug fix for exponent(::Rational) crossing power-of-two boundary when
 
 1. [x] **analyst (inline_story)** — Ticket already has clear acceptance criteria; inline story captures the Given/When/Then structure and technical approach.
    - focus: Focus on the power-of-two boundary issue in exponent(::Rational) and the need for an integer-only implementation that avoids Float64 conversion. Emphasize the test location (test/math.jl) and scope constraint (Rationals only, no changes to float or integer exponent methods).
-2. [ ] **architect_gate (review)** _(auto)_ — Human approval of specs and this plan before Dev.
+2. [x] **architect_gate (review)** _(auto)_ — Human approval of specs and this plan before Dev.
 3. [ ] **dev** _(auto)_ — Loop delivery.
 4. [ ] **pre_pr_qa** _(auto)_ — Loop delivery.
 5. [ ] **open_pr** _(auto)_ — Loop delivery.
