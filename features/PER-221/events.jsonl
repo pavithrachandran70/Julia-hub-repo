@@ -26,3 +26,9 @@
 {"at": "2026-11-11T08:56:30.337269+00:00", "node": "analyst", "event": "llm_ok", "model": "claude-sonnet-4-5-20250929", "in": 17383, "out": 1380, "cache_read": 0, "usd": 0.072849, "ms": 18516, "ok": true, "dry_run": false, "error": null}
 {"at": "2026-11-11T08:57:16.462558+00:00", "node": "analyst", "event": "llm_ok", "model": "claude-sonnet-4-5-20250929", "in": 19102, "out": 2634, "cache_read": 0, "usd": 0.096816, "ms": 46111, "ok": true, "dry_run": false, "error": null}
 {"at": "2026-11-11T08:57:41.452680+00:00", "node": "critic", "event": "llm_ok", "model": "claude-sonnet-4-5-20250929", "in": 9253, "out": 939, "cache_read": 0, "usd": 0.041844, "ms": 24967, "ok": true, "dry_run": false, "error": null}
+{"at": "2026-11-11T09:30:15.613754+00:00", "node": "dev", "event": "cursor_run", "ok": false, "status": "timeout", "error": "Cursor agent timed out"}
+{"at": "2026-11-11T09:32:54.647175+00:00", "node": "dev", "event": "verify_fail", "ok": false, "error": "test failed"}
+{"at": "2026-11-11T10:03:02.691755+00:00", "node": "dev", "event": "cursor_run", "ok": false, "status": "timeout", "error": "Cursor agent timed out"}
+{"at": "2026-11-11T10:14:55.948772+00:00", "node": "dev", "event": "verify_fail", "ok": false, "error": "test failed"}
+{"at": "2026-11-11T10:44:57.316070+00:00", "node": "dev", "event": "cursor_run", "ok": false, "status": "timeout", "error": "Cursor agent timed out"}
+{"at": "2026-11-11T10:46:31.713626+00:00", "node": "dev", "event": "verify_fail", "ok": false, "error": "test failed"}

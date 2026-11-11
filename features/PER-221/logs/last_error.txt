@@ -1,0 +1,64 @@
+test failed
+$ julia --startup-file=no contrib/check-whitespace.jl
+
+Whitespace check found no issues.
+
+(exit 0)
+$ ./usr/bin/julia --startup-file=no test/runtests.jl math
+Running parallel tests with:
+  getpid() = 2306544
+  nworkers() = 1
+  nthreads(:interactive) = 1
+  nthreads(:default) = 1
+  Sys.CPU_THREADS = 12
+  Sys.total_memory() = 15.112 GiB
+  Sys.free_memory() = 4.086 GiB
+  Sys.uptime() = 178938.86 (49.7 hours)
+
+[37mTest[39m[37m  (Worker) | [39m[37mTime (s) | GC (s) | GC % | Alloc (MB) | RSS (MB)[39m
+[37mmath       (1) |        [39m[90mstarted at 2026-11-11T16:15:07.263[39m
+[31mmath[39m[31m       (1) |         failed at 2026-11-11T16:16:30.865[39m
+[91m[1mTest Failed[22m[39m at [39m[1m/home/pavc/.adlc/worktrees/Julia/PER-221/Julia/test/math.jl:1012[22m
+  Expression: Base.checked_pow(typemax(UInt8), -1)
+    Expected: DomainError
+  No exception thrown
+[91m[1mTest Failed[22m[39m at [39m[1m/home/pavc/.adlc/worktrees/Julia/PER-221/Julia/test/math.jl:1013[22m
+  Expression: Base.checked_pow(typemax(UInt64), -1)
+    Expected: DomainError
+  No exception thrown
+[91m[1mTest Failed[22m[39m at [39m[1m/home/pavc/.adlc/worktrees/Julia/PER-221/Julia/test/math.jl:1014[22m
+  Expression: Base.checked_pow(typemax(UInt128), -1)
+    Expected: DomainError
+  No exception thrown
+
+
+[0m[1mTest Summary: | [22m[32m[1m   Pass  [22m[39m[91m[1mFail  [22m[39m[36m[1m  Total  [22m[39m[0m[1m   Time[22m
+  Overall     | [32m2708678  [39m[91m   3  [39m[36m2708681  [39m[0m1m24.6s
+    math      | [32m2708678  [39m[91m   3  [39m[36m2708681  [39m[0m1m24.2s
+[31m[1m    FAILURE[22m[39m
+
+The global RNG seed was 0x950925ce72c35cc8a2b8c6b8cb2c34ed.
+
+Error in testset math:
+[91m[1mTest Failed[22m[39m at [39m[1m/home/pavc/.adlc/worktrees/Julia/PER-221/Julia/test/math.jl:1012[22m
+  Expression: Base.checked_pow(typemax(UInt8), -1)
+    Expected: DomainError
+  No exception thrown
+Error in testset math:
+[91m[1mTest Failed[22m[39m at [39m[1m/home/pavc/.adlc/worktrees/Julia/PER-221/Julia/test/math.jl:1013[22m
+  Expression: Base.checked_pow(typemax(UInt64), -1)
+    Expected: DomainError
+  No exception thrown
+Error in testset math:
+[91m[1mTest Failed[22m[39m at [39m[1m/home/pavc/.adlc/worktrees/Julia/PER-221/Julia/test/math.jl:1014[22m
+  Expression: Base.checked_pow(typemax(UInt128), -1)
+    Expected: DomainError
+  No exception thrown
+
+[91m[1mERROR: [22m[39mLoadError: [91mTest run finished with errors[39m
+in expression starting at /home/pavc/.adlc/worktrees/Julia/PER-221/Julia/test/runtests.jl:174
+
+(exit 1)
+Cursor agent timed out
+Connection lost, reconnecting to https://agentn.global.api5.cursor.sh (attempt 1)...
+Retry attempt 1...

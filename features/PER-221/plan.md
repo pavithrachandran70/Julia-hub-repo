@@ -15,7 +15,7 @@ Single-repo bug fix in Julia's checked_pow for unsigned integers: the negative-e
 1. [x] **analyst (inline_story)** — Convert the ticket into a single implementable story with Given/When/Then AC and tech notes for the fix.
    - focus: Focus on the unsigned wrap-around logic in power_by_squaring's negative-exponent path in base/intfuncs.jl. The fix must preserve signed -1 behavior and only affect unsigned typemax rejection.
 2. [ ] **critic (consistency_check)** — Cross-check that the story's acceptance criteria match the ticket and that the fix scope excludes signed integers, Bool, BigInt, floats, and all paths outside base/intfuncs.jl and test/math.jl.
-3. [ ] **architect_gate (review)** _(auto)_ — Human approval of specs and this plan before Dev.
+3. [x] **architect_gate (review)** _(auto)_ — Human approval of specs and this plan before Dev.
 4. [ ] **dev** _(auto)_ — Loop delivery.
 5. [ ] **pre_pr_qa** _(auto)_ — Loop delivery.
 6. [ ] **open_pr** _(auto)_ — Loop delivery.

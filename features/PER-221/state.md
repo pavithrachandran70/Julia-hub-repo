@@ -2,31 +2,31 @@
 schema_version: 1
 key: PER-221
 status: escalated
-current_node: critic
+current_node: dev
 track: standard
 involved_repos:
 - Julia
 depends_on: []
 owner: pavc
 lease_until: '2026-11-13T08:46:34.117121+00:00'
-revision: 24
+revision: 35
 hub_sha: null
 ticket_hash: d16135fdab9ff1a1
 jira_hash: d16135fdab9ff1a1
-tpm_approved: false
-specs_locked: false
+tpm_approved: true
+specs_locked: true
 skills_lock:
   bmad: 1cbcfa272fe65787c06a1fa164a901f46117cca7
 stories:
 - 01-Julia
 child_ticket_keys: []
 critic_iterations: 2
-dev_retries: 0
+dev_retries: 3
 pr_revision_rounds: 0
 gate_rounds: {}
 pr_ids:
   hub_plan: '12'
-waiting_for: human_critic
+waiting_for: dev_failure
 tokens_in: 313618
 tokens_out: 29689
 cost_anthropic_usd: 1.385541
@@ -102,6 +102,15 @@ history:
 - node: critic
   note: exhausted; wrote change_requests.md
   at: '2026-11-11T08:57:41.456745+00:00'
+- node: architect_gate
+  note: approved via CLI
+  at: '2026-11-11T08:59:50.349508+00:00'
+- node: dev
+  note: starting
+  at: '2026-11-11T09:00:12.904285+00:00'
+- node: dev
+  note: 'failed 01-Julia: test failed'
+  at: '2026-11-11T10:46:31.751142+00:00'
 ---
 
 # Feature state
