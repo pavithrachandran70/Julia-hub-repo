@@ -12,7 +12,7 @@ A single-repo bug fix in Julia's rationalize function to honor the tol parameter
 
 ## Steps
 
-1. [ ] **analyst (inline_story)** — Convert the bug description into a Given/When/Then story with concrete acceptance criteria and implementation notes.
+1. [x] **analyst (inline_story)** — Convert the bug description into a Given/When/Then story with concrete acceptance criteria and implementation notes.
    - focus: Focus on the two paths: handling tol when a valid approximation exists within tolerance, and deciding whether to reject the keyword or use it. Include edge cases like typemin/typemax boundaries.
 2. [ ] **architect_gate (review)** _(auto)_ — Human approval of specs and this plan before Dev.
 3. [ ] **dev** _(auto)_ — Loop delivery.
